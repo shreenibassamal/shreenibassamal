@@ -7,7 +7,7 @@
 <h1 align="left">Hi 👋, I'm Shreenibas Samal</h1>
 <h3 align="left">A passionate software engineer from India</h3>
 
-<h3 align="left">📒 Notes & Resources by Shreenibas</h3>
+<h3 align="left">📒 Notes & Resources For QA Automatation</h3>
 <ul>
    <li><a href="">Manaul</a></li>    
    <li><a href="">Agile with jira</a></li>
