@@ -9,11 +9,7 @@
 
 <h3 align="left">📒 Notes & Resources For QA Automatation</h3>
 <ul>
-<<<<<<< HEAD
-   <li><a href="">Manul</a></li>    
-=======
    <li><a href="./01_QA_NOTES/manualTesting.md">Manaul</a></li>    
->>>>>>> ca28e2c (updated)
    <li><a href="">Agile with jira</a></li>
    <li><a href="">SQL</a></li>
    <li><a href="">Java</a></li>
