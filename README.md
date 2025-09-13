@@ -10,7 +10,7 @@
 <h3 align="left">📒 Notes & Resources For QA Automatation</h3>
 <ul>
    <li><a href="./01_QA_NOTES/manualTesting.md">Manaul</a></li>    
-   <li><a href="">Agile with jira</a></li>
+   <li><a href="./01_QA_NOTES/agile.md">Agile with jira</a></li>
    <li><a href="">SQL</a></li>
    <li><a href="">Java</a></li>
    <li><a href="./01_QA_NOTES/maven.md">Maven</a></li>
