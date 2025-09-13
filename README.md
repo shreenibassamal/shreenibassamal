@@ -9,8 +9,21 @@
 
 <h3 align="left">📒 Notes & Resources by Shreenibas</h3>
 <ul>
-  <li><a href="./maven.md">Maven</a></li>
-  <li><a href=">jenkins</a></li>
-  <li><a href=">git and github</a></li>
+   <li><a href="">Manaul</a></li>    
+   <li><a href="">Agile with jira</a></li>
+   <li><a href="">Java</a></li>
+   <li><a href="./maven.md">Maven</a></li>
+   <li><a href="">Selenium With Java</a></li>
+   <li><a href="">Appium</a></li>
+   <li><a href="">TestNG</a></li>
+   <li><a href="">API</a></li>
+   <li><a href="">Restassured</a></li>
+   <li><a href="">git and github</a></li>
+   <li><a href="">jenkins</a></li>
+   <li><a href="">Java Coding QA</a></li>
+   <li><a href="">API Status Code</a></li>
+   <li><a href="">Xpath</a></li>
+   <li><a href="">DOM, BOM, AJAX</a></li>
+   <li><a href="">Most Asked Interview QA </a></li>
 </ul>
 
