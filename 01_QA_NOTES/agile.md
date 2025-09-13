@@ -1,4 +1,4 @@
----
+
 
 ## 🔹 1. What is Agile?
 
@@ -9,7 +9,6 @@
 * Focus: **Customer collaboration, flexibility, continuous feedback, and quick delivery**.
     
 
----
 
 ## 🔹 2. Why Agile Came?
 
