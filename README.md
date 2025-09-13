@@ -11,6 +11,7 @@
 <ul>
    <li><a href="">Manaul</a></li>    
    <li><a href="">Agile with jira</a></li>
+   <li><a href="">SQL</a></li>
    <li><a href="">Java</a></li>
    <li><a href="./maven.md">Maven</a></li>
    <li><a href="">Selenium With Java</a></li>
