@@ -9,7 +9,7 @@
 ## 2xx – Success Responses
 |   Code | Meaning                         | When It Occurs                                   | Example                                 |
 | ------:| --------------------------------| ------------------------------------------------ | --------------------------------------- |
-|    200 | OK         aa                     | Request succeeded; returns data.                 | `GET /users` fetches user list.        |
+|    200 | OK                              | Request succeeded; returns data.                 | `GET /users` fetches user list.        |
 |    201 | Created                         | Resource successfully created.                   | `POST /users` creates a user.          |
 |    202 | Accepted                        | Request accepted, processing later.              | Async file processing.                 |
 |    203 | Non-Authoritative Information   | Data modified by proxy or third-party.           | Cached API response.                   |
