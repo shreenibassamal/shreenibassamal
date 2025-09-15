@@ -19,7 +19,7 @@
    <li><a href="">TestNG</a></li>
    <li><a href="">API</a></li>
    <li><a href="">Restassured</a></li>
-   <li><a href="">git and github</a></li>
+   <li><a href="./01_QA_NOTES/github.md">git and github</a></li>
    <li><a href="">jenkins</a></li>
    <li><a href="">Java Coding QA</a></li>
    <li><a href="./01_QA_NOTES/apiStatuscode.md">API Status Code</a></li>
