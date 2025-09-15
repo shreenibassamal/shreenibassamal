@@ -3,6 +3,138 @@
 
 ## [Click on Link](https://xpath-by-shreenibas.netlify.app/)
 
+XPath functions are used to **navigate XML/HTML documents** and **perform operations on nodes and values**.
+
+---
+
+## **1\. String Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `contains(string, substring)` | Checks if `string` contains `substring` | `//input[contains(@id,'user')]` |
+| `starts-with(string, prefix)` | Checks if `string` starts with `prefix` | `//a[starts-with(@href,'https')]` |
+| `ends-with(string, suffix)` | Checks if `string` ends with `suffix` (XPath 2.0) | `//a[ends-with(@href,'.com')]` |
+| `string-length(string)` | Returns length of string | `string-length(//input/@value)` |
+| `normalize-space(string)` | Removes leading/trailing spaces & normalizes spaces | `normalize-space(//div[@id='desc'])` |
+| `substring(string, start, length)` | Extracts substring | `substring('HelloWorld',1,5)` → `Hello` |
+| `substring-before(string, substring)` | Returns substring before a value | `substring-before('`[`user@example.com`](mailto:user@example.com)`','@')` → `user` |
+| `substring-after(string, substring)` | Returns substring after a value | `substring-after('`[`user@example.com`](mailto:user@example.com)`','@')` → [`example.com`](http://example.com) |
+| `translate(string, chars1, chars2)` | Replace characters | `translate('abc','a','x')` → `xbc` |
+| `concat(string1, string2,...)` | Concatenate strings | `concat('Hello',' ','World')` → `Hello World` |
+| `string(object)` | Converts object to string | `string(//div[@class='title'])` |
+
+---
+
+## **2\. Numeric Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `number(string)` | Converts string to number | `number('123')` → 123 |
+| `sum(node-set)` | Returns sum of node values | `sum(//price)` |
+| `floor(number)` | Rounds down | `floor(3.7)` → 3 |
+| `ceiling(number)` | Rounds up | `ceiling(3.2)` → 4 |
+| `round(number)` | Rounds to nearest integer | `round(3.5)` → 4 |
+
+---
+
+## **3\. Boolean Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `boolean(object)` | Converts object to boolean | `boolean(//div[@id='desc'])` |
+| `not(expression)` | Negates boolean | `not(@disabled)` |
+| `true()` | Returns boolean true | `//input[@enabled=true()]` |
+| `false()` | Returns boolean false | `//input[@checked=false()]` |
+| `lang(string)` | Checks language of node | `//p[lang('en')]` |
+
+---
+
+## **4\. Node Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `last()` | Returns last node position | `//li[last()]` |
+| `position()` | Returns position of current node | `//li[position()=2]` |
+| `count(node-set)` | Returns number of nodes | `count(//div)` |
+| `name(node)` | Returns node name | `name(//div)` → `div` |
+| `local-name(node)` | Returns local name without namespace | `local-name(//ns:div)` → `div` |
+| `namespace-uri(node)` | Returns namespace URI | `namespace-uri(//ns:div)` |
+
+---
+
+## **5\. Date & Time Functions** (XPath 2.0)
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `current-date()` | Returns current date | `current-date()` → 2025-09-15 |
+| `current-time()` | Returns current time | `current-time()` → 14:30:00 |
+| `current-dateTime()` | Returns current date & time | `current-dateTime()` |
+| `years-from-duration(duration)` | Extract years from duration | `years-from-duration(xs:dayTimeDuration('P3Y2M'))` → 3 |
+| `days-from-duration(duration)` | Extract days | `days-from-duration(xs:dayTimeDuration('P3DT5H'))` → 3 |
+
+---
+
+## **6\. XPath Axes (Related to functions)**
+
+While not functions per se, axes are **used in combination with XPath functions**:
+
+| Axis | Description | Example |
+| --- | --- | --- |
+| `ancestor` | Selects parent nodes | `//span/ancestor::div` |
+| `descendant` | Selects child/grandchild nodes | `//div/descendant::p` |
+| `following-sibling` | Siblings after current node | `//h2/following-sibling::p` |
+| `preceding-sibling` | Siblings before current node | `//h2/preceding-sibling::p` |
+| `self` | Select current node | `//div/self::div` |
+| `parent` | Select parent | `//span/parent::div` |
+
+---
+
+## **7\. Combining Functions (Examples)**
+
+1. **Find element containing text and trimmed spaces**:
+    
+
+```xml
+//div[normalize-space(text())='Login']
+```
+
+2. **Check last element with partial text**:
+    
+
+```xml
+(//li[contains(text(),'Option')])[last()]
+```
+
+3. **Dynamic XPath using substring**:
+    
+
+```xml
+//span[substring(@id,1,5)='user_']
+```
+
+4. **Check element with translated value**:
+    
+
+```xml
+//input[translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')='text']
+```
+
+---
+
+✅ **Summary**:
+
+* **String functions:** `contains`, `starts-with`, `substring`, `normalize-space`, etc.
+    
+* **Numeric functions:** `sum`, `floor`, `ceiling`, `round`
+    
+* **Boolean functions:** `boolean`, `not`, `true()`, `false()`
+    
+* **Node functions:** `last()`, `position()`, `count()`, `name()`
+    
+* **Date/Time functions:** `current-date()`, `current-time()` (XPath 2.0)
+    
+* **Axes** are used to navigate the XML tree.
+
 **Q1. What is XPath? Types?**  
 XPath is a query language to locate nodes in XML/HTML.
 
