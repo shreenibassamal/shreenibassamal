@@ -216,26 +216,6 @@ Axes are **used to navigate nodes relative to current node**:
 
 ---
 
-If you want, I can **make a “Complete XPath 1.0 Cheat Sheet”** with:
-
-* **All functions**
-    
-* **Axes**
-    
-* **Predicates**
-    
-* **Examples**
-    
-
-…ready for **Selenium/Automation interviews**.
-
-Do you want me to make that?
-
-##### You said:
-
-yes
-
-###### ChatGPT said:
 
 Perfect! Here’s a **complete XPath 1.0 Cheat Sheet** for interview and practical use. I’ve structured it **clearly with functions, axes, predicates, and examples**.
 
