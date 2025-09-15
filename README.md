@@ -22,7 +22,7 @@
    <li><a href="">git and github</a></li>
    <li><a href="">jenkins</a></li>
    <li><a href="">Java Coding QA</a></li>
-   <li><a href="">API Status Code</a></li>
+   <li><a href="./01_QA_NOTES/apiStatuscode.md">API Status Code</a></li>
    <li><a href="./01_QA_NOTES/xpath.md">Xpath</a></li>
    <li><a href="">DOM, BOM, AJAX</a></li>
    <li><a href="">Most Asked Interview QA </a></li>
