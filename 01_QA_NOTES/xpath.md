@@ -5,6 +5,414 @@
 
 XPath functions are used to **navigate XML/HTML documents** and **perform operations on nodes and values**.
 
+XPath 1.0 is a **language to navigate XML/HTML documents** and locate elements using **nodes, attributes, and values**.
+
+---
+
+## **1\. XPath Node Types**
+
+1. **Root Node:** `/` → top of XML document
+    
+2. **Element Node:** `<div>` → select with tag name
+    
+3. **Attribute Node:** `@id`, `@class` → select element attributes
+    
+4. **Text Node:** `text()` → get inner text of element
+    
+5. **Namespace Node:** `namespace::*` → used in XML namespaces
+    
+
+---
+
+## **2\. XPath Operators**
+
+### **2.1 Arithmetic Operators**
+
+* `+` → Addition
+    
+* `-` → Subtraction
+    
+* `*` → Multiplication
+    
+* `div` → Division
+    
+* `mod` → Modulus
+    
+
+**Example:**
+
+```xml
+//price[text() mod 2 = 0]  // Select prices divisible by 2
+```
+
+### **2.2 Comparison Operators**
+
+* `=` → equal
+    
+* `!=` → not equal
+    
+* `<` → less than
+    
+* `>` → greater than
+    
+* `<=` → less than or equal
+    
+* `>=` → greater than or equal
+    
+
+**Example:**
+
+```xml
+//input[@type='text']
+```
+
+### **2.3 Logical Operators**
+
+* `and` → both conditions true
+    
+* `or` → either condition true
+    
+
+**Example:**
+
+```xml
+//input[@type='text' and @name='username']
+```
+
+---
+
+## **3\. XPath 1.0 Functions**
+
+### **3.1 String Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `contains(string, substring)` | Checks if string contains substring | `//input[contains(@id,'user')]` |
+| `starts-with(string, prefix)` | Checks if string starts with prefix | `//a[starts-with(@href,'https')]` |
+| `string-length(string)` | Returns length of string | `string-length(//input/@value)` |
+| `normalize-space(string)` | Remove leading/trailing spaces | `normalize-space(//div[@id='desc'])` |
+| `substring(string, start, length)` | Extract substring | `substring('HelloWorld',1,5)` → `Hello` |
+| `substring-before(string, substring)` | Text before substring | `substring-before('`[`user@example.com`](mailto:user@example.com)`','@')` → `user` |
+| `substring-after(string, substring)` | Text after substring | `substring-after('`[`user@example.com`](mailto:user@example.com)`','@')` → [`example.com`](http://example.com) |
+| `concat(string1,string2,...)` | Join strings | `concat('Hello',' ','World')` → `Hello World` |
+| `translate(string, chars1, chars2)` | Replace characters | `translate('abc','a','x')` → `xbc` |
+| `string(object)` | Convert object to string | `string(//div[@class='title'])` |
+
+---
+
+### **3.2 Numeric Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `number(string)` | Convert string to number | `number('123')` → 123 |
+| `sum(node-set)` | Sum of node values | `sum(//price)` |
+| `floor(number)` | Round down | `floor(3.7)` → 3 |
+| `ceiling(number)` | Round up | `ceiling(3.2)` → 4 |
+| `round(number)` | Round to nearest | `round(3.5)` → 4 |
+
+---
+
+### **3.3 Boolean Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `boolean(object)` | Convert object to boolean | `boolean(//div[@id='desc'])` |
+| `not(expression)` | Negates boolean | `not(@disabled)` |
+| `true()` | Returns true | `//input[@enabled=true()]` |
+| `false()` | Returns false | `//input[@checked=false()]` |
+
+---
+
+### **3.4 Node Functions**
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `last()` | Last node position | `//li[last()]` |
+| `position()` | Current node position | `//li[position()=2]` |
+| `count(node-set)` | Number of nodes | `count(//div)` |
+| `name(node)` | Name of node | `name(//div)` → `div` |
+| `local-name(node)` | Local name (ignore namespace) | `local-name(//ns:div)` → `div` |
+
+---
+
+## **4\. XPath Axes (1.0)**
+
+Axes are **used to navigate nodes relative to current node**:
+
+| Axis | Description | Example |
+| --- | --- | --- |
+| `child` | Select children | `//div/child::p` → all `<p>` inside `<div>` |
+| `parent` | Select parent | `//span/parent::div` |
+| `ancestor` | Select all ancestors | `//span/ancestor::div` |
+| `descendant` | All descendants | `//div/descendant::p` |
+| `following-sibling` | Siblings after current | `//h2/following-sibling::p` |
+| `preceding-sibling` | Siblings before current | `//h2/preceding-sibling::p` |
+| `self` | Current node | `//div/self::div` |
+| `descendant-or-self` | Self + descendants | `//div/descendant-or-self::span` |
+| `ancestor-or-self` | Self + ancestors | `//span/ancestor-or-self::div` |
+
+---
+
+## **5\. XPath 1.0 Predicates**
+
+* Predicates are **conditions in square brackets** `[]` to filter nodes.
+    
+
+**Examples:**
+
+```xml
+//input[@type='text']               // All text inputs
+//li[position()=1]                  // First <li> element
+//li[last()]                        // Last <li> element
+//div[contains(text(),'Login')]     // Div with “Login” text
+//a[starts-with(@href,'https')]     // Links starting with https
+//tr[td='Admin']                    // Table row where td='Admin'
+```
+
+---
+
+## **6\. Combining Functions & Axes**
+
+1. **Find last element containing text**:
+    
+
+```xml
+(//li[contains(text(),'Option')])[last()]
+```
+
+2. **Select second input inside a form**:
+    
+
+```xml
+//form/input[position()=2]
+```
+
+3. **Parent of an element containing specific text**:
+    
+
+```xml
+//span[contains(text(),'Username')]/parent::div
+```
+
+4. **Normalize spaces and compare text**:
+    
+
+```xml
+//div[normalize-space(text())='Login']
+```
+
+---
+
+### **7\. Key Points of XPath 1.0**
+
+* **Version 1.0 does not support ends-with() or advanced date functions** (XPath 2.0 only).
+    
+* **Supports basic string, numeric, boolean, and node functions.**
+    
+* Widely used in **Selenium, QTP, Tosca (classic), and XML parsing**.
+    
+* Combine **axes, predicates, and functions** for powerful element selection.
+    
+
+---
+
+If you want, I can **make a “Complete XPath 1.0 Cheat Sheet”** with:
+
+* **All functions**
+    
+* **Axes**
+    
+* **Predicates**
+    
+* **Examples**
+    
+
+…ready for **Selenium/Automation interviews**.
+
+Do you want me to make that?
+
+##### You said:
+
+yes
+
+###### ChatGPT said:
+
+Perfect! Here’s a **complete XPath 1.0 Cheat Sheet** for interview and practical use. I’ve structured it **clearly with functions, axes, predicates, and examples**.
+
+---
+
+# **XPath 1.0 Cheat Sheet – Complete Guide**
+
+---
+
+## **1\. XPath Node Types**
+
+| Node Type | Description | Example |
+| --- | --- | --- |
+| Root | Top of XML/HTML | `/` |
+| Element | HTML/XML element | `//div` |
+| Attribute | Element attributes | `//@id` |
+| Text | Inner text of element | `//div/text()` |
+| Namespace | Namespace in XML | `namespace::*` |
+
+---
+
+## **2\. XPath Operators**
+
+### Arithmetic
+
+| Operator | Description |
+| --- | --- |
+| `+` | Addition |
+| `-` | Subtraction |
+| `*` | Multiplication |
+| `div` | Division |
+| `mod` | Modulus |
+
+### Comparison
+
+| Operator | Description |
+| --- | --- |
+| `=` | Equals |
+| `!=` | Not equals |
+| `<` | Less than |
+| `>` | Greater than |
+| `<=` | Less or equal |
+| `>=` | Greater or equal |
+
+### Logical
+
+| Operator | Description |
+| --- | --- |
+| `and` | Both conditions true |
+| `or` | Either condition true |
+
+---
+
+## **3\. XPath 1.0 Functions**
+
+### String Functions
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `contains(string, substring)` | Checks substring | `//input[contains(@id,'user')]` |
+| `starts-with(string, prefix)` | Checks start of string | `//a[starts-with(@href,'https')]` |
+| `string-length(string)` | Length of string | `string-length(//input/@value)` |
+| `normalize-space(string)` | Trim & normalize spaces | `normalize-space(//div[@id='desc'])` |
+| `substring(string,start,length)` | Substring | `substring('HelloWorld',1,5)` → `Hello` |
+| `substring-before(string,substr)` | Text before substring | `substring-before('`[`user@example.com`](mailto:user@example.com)`','@')` → `user` |
+| `substring-after(string,substr)` | Text after substring | `substring-after('`[`user@example.com`](mailto:user@example.com)`','@')` → [`example.com`](http://example.com) |
+| `concat(string1,string2,...)` | Join strings | `concat('Hello',' ','World')` → `Hello World` |
+| `translate(string,chars1,chars2)` | Replace characters | `translate('abc','a','x')` → `xbc` |
+| `string(object)` | Convert object to string | `string(//div[@class='title'])` |
+
+### Numeric Functions
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `number(string)` | Convert string to number | `number('123')` → 123 |
+| `sum(node-set)` | Sum node values | `sum(//price)` |
+| `floor(number)` | Round down | `floor(3.7)` → 3 |
+| `ceiling(number)` | Round up | `ceiling(3.2)` → 4 |
+| `round(number)` | Round nearest | `round(3.5)` → 4 |
+
+### Boolean Functions
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `boolean(object)` | Convert to boolean | `boolean(//div[@id='desc'])` |
+| `not(expression)` | Negates boolean | `not(@disabled)` |
+| `true()` | Returns true | `//input[@enabled=true()]` |
+| `false()` | Returns false | `//input[@checked=false()]` |
+
+### Node Functions
+
+| Function | Description | Example |
+| --- | --- | --- |
+| `last()` | Last node | `//li[last()]` |
+| `position()` | Current node | `//li[position()=2]` |
+| `count(node-set)` | Number of nodes | `count(//div)` |
+| `name(node)` | Node name | `name(//div)` → `div` |
+| `local-name(node)` | Local name without namespace | `local-name(//ns:div)` → `div` |
+
+---
+
+## **4\. XPath 1.0 Axes**
+
+| Axis | Description | Example |
+| --- | --- | --- |
+| `child` | Direct children | `//div/child::p` |
+| `parent` | Parent node | `//span/parent::div` |
+| `ancestor` | All ancestors | `//span/ancestor::div` |
+| `descendant` | All descendants | `//div/descendant::p` |
+| `following-sibling` | Siblings after current | `//h2/following-sibling::p` |
+| `preceding-sibling` | Siblings before current | `//h2/preceding-sibling::p` |
+| `self` | Current node | `//div/self::div` |
+| `descendant-or-self` | Self + descendants | `//div/descendant-or-self::span` |
+| `ancestor-or-self` | Self + ancestors | `//span/ancestor-or-self::div` |
+
+---
+
+## **5\. XPath 1.0 Predicates**
+
+* Predicates are **conditions in** `[ ]` to filter nodes.
+    
+
+**Examples:**
+
+```xml
+//input[@type='text']                   // All text inputs
+//li[position()=1]                      // First <li> element
+//li[last()]                            // Last <li> element
+//div[contains(text(),'Login')]         // Div with "Login" text
+//a[starts-with(@href,'https')]         // Links starting with https
+//tr[td='Admin']                        // Table row where td='Admin'
+```
+
+---
+
+## **6\. Combining Functions and Axes (Examples)**
+
+1. **Find last element containing text**:
+    
+
+```xml
+(//li[contains(text(),'Option')])[last()]
+```
+
+2. **Select second input inside a form**:
+    
+
+```xml
+//form/input[position()=2]
+```
+
+3. **Parent of an element containing specific text**:
+    
+
+```xml
+//span[contains(text(),'Username')]/parent::div
+```
+
+4. **Normalize spaces and compare text**:
+    
+
+```xml
+//div[normalize-space(text())='Login']
+```
+
+---
+
+### ✅ **Key Notes**
+
+* XPath 1.0 is **widely used in Selenium**.
+    
+* **Does not support** ends-with(), date functions, or regex (XPath 2.0 only).
+    
+* Combine **axes + predicates + functions** to locate complex elements.
+    
+* Use **normalize-space()**, `contains()`, `starts-with()` for dynamic XPath.
+
 ---
 
 ## **1\. String Functions**
