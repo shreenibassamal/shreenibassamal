@@ -1,6 +1,6 @@
 <h3 align="left">📒 Click here for Selemuim in details</h3>
 <ul>
-   <li><a href="./01_QA_NOTES/.md">Manaul</a></li>   
+   <li><a href="./01_QA_NOTES/seleniumNotes.md">Selenium Notes</a></li>   
 </ul>   
 If you’re preparing **Selenium with Java (Core topics)**, I’ll break it down into **4 major sections** so you get a **complete roadmap + interview-ready topics**:
 
