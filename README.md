@@ -14,7 +14,7 @@
    <li><a href="">SQL</a></li>
    <li><a href="">Java</a></li>
    <li><a href="./01_QA_NOTES/maven.md">Maven</a></li>
-   <li><a href="">Selenium With Java</a></li>
+   <li><a href="./01_QA_NOTES/selenium">Selenium With Java</a></li>
    <li><a href="">Appium</a></li>
    <li><a href="">TestNG</a></li>
    <li><a href="">API</a></li>
