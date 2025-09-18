@@ -21,7 +21,7 @@
    <li><a href="">Restassured</a></li>
    <li><a href="./01_QA_NOTES/github.md">git and github</a></li>
    <li><a href="">jenkins</a></li>
-   <li><a href="">Java Coding QA</a></li>
+   <li><a href="./01_QA_NOTES/javaCoding.md">Java Coding QA</a></li>
    <li><a href="./01_QA_NOTES/apiStatuscode.md">API Status Code</a></li>
    <li><a href="./01_QA_NOTES/xpath.md">Xpath</a></li>
    <li><a href="">DOM, BOM, AJAX</a></li>
