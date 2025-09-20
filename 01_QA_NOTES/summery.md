@@ -755,4 +755,232 @@ Annotations in TestNG control **test execution flow** ⏳.
 | 19 | @Test(dependsOnMethods) | One test depends on another 🔗 |
 | 20 | @Test(expectedExceptions) | Expected exception in test ⚡ |
 * ---
+* # 8️⃣ UtilityClassObject 🛠️
+
+UtilityClassObject is designed to manage **WebDriver** and **ExtentTest** objects in a **thread-safe** way using `ThreadLocal`.  
+This is 🔑 for **parallel execution** so tests don’t interfere with each other.
+
+### ✅ Why use it?
+
+* Each test gets its **own WebDriver** and **ExtentTest** instance.
+    
+* Prevents logs/screenshots from mixing up.
+    
+* Ensures **clean reports** in parallel runs.
+    
+
+public class UtilityClassObject {
+
+public static ThreadLocal&lt;ExtentTest&gt; test = new ThreadLocal&lt;&gt;();
+
+public static ThreadLocal&lt;WebDriver&gt; driver = new ThreadLocal&lt;&gt;();
+
+public static ExtentTest getTest() { return test.get(); }
+
+public static void setTest(ExtentTest actTest) { test.set(actTest); }
+
+public static WebDriver getDriver() { return driver.get(); }
+
+public static void setDriver(WebDriver actDriver) { driver.set(actDriver); }
+
+}
+
+👉 **Real-Time Use:**
+
+* Call `setDriver()` in setup.
+    
+* Use `getDriver()` in test steps.
+    
+* Same approach for `ExtentTest` logging.
+    
+
+---
+
+# 9️⃣ testng.xml 📄
+
+`testng.xml` is like a **control file** for TestNG ⚡. It tells which test classes to run, order, groups, parallel execution, and parameters.
+
+### 🎯 Benefits
+
+* Runs multiple classes in sequence or parallel.
+    
+* Groups test cases (login, payment, regression).
+    
+* Adds parameters and listeners easily.
+    
+
+### 🏗️ Structure
+
+| Tag / Attribute | Example | Purpose |
+| --- | --- | --- |
+| `<!DOCTYPE suite SYSTEM>` | Declared at top | Defines it as a TestNG file. |
+| `<suite>` | `<suite name="Suite">` | Root element (whole suite). |
+| `<test>` | `<test name="Test">` | A group of classes/tests. |
+| `<classes>` | `<classes>...</classes>` | Container for test classes. |
+| `<class>` | `<class name="com.tests.LoginTest"/>` | Runs that specific test class. |
+
+&lt;!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" &gt;
+
+&lt;suite name="Suite"&gt;
+
+&lt;test name="Test"&gt;
+
+&lt;classes&gt;
+
+&lt;class name="com.tests.LoginTest"/&gt;
+
+&lt;/classes&gt;
+
+&lt;/test&gt;
+
+&lt;/suite&gt;
+
+👉 **Real-Time Use:** Helps centralize all test classes, reduces manual execution, and integrates smoothly with Jenkins.
+
+---
+
+# 🔟 Selenium Java Architecture 🏗️
+
+Selenium Java follows **OOP concepts**: Abstraction, Inheritance, and Runtime Polymorphism.
+
+### 🔑 Flow:
+
+* **SearchContext** → Base interface (`findElement`, `findElements`).
+    
+* **WebDriver** → Extends SearchContext (browser-level methods).
+    
+* **RemoteWebDriver** → Implements WebDriver.
+    
+* **Browser Drivers** (ChromeDriver, FirefoxDriver) → Extend RemoteWebDriver.
+    
+
+| Component | Type | Contains | Inherits | Role |
+| --- | --- | --- | --- | --- |
+| SearchContext | Interface | `findElement()`, `findElements()` | — | Base interface |
+| WebDriver | Interface | Browser-level methods | Extends SearchContext | Cross-browser automation |
+| RemoteWebDriver | Class | Implements all methods | Implements WebDriver | Core implementation |
+| ChromeDriver | Class | Chrome browser control | Extends RemoteWebDriver | Launch Chrome |
+| FirefoxDriver | Class | Firefox browser control | Extends RemoteWebDriver | Launch Firefox |
+
+WebDriver driver = new ChromeDriver(); // RTP: WebDriver reference, ChromeDriver object
+
+👉 **Real-Time Use:** One code works for multiple browsers by just changing driver object creation.
+
+---
+
+# 1️⃣1️⃣ Screenshot 📸
+
+Screenshots in Selenium help in 📊 **debugging, bug reporting, and attaching to reports**.
+
+### 🎯 Types
+
+1. **Element Screenshot** → Only captures specific element.
+    
+2. **Full Page Screenshot** → Captures entire browser window.
+    
+
+// Element Screenshot
+
+WebElement logo = driver.findElement(By.id("logo"));
+
+File src = logo.getScreenshotAs(OutputType.FILE);
+
+FileHandler.copy(src, new File("./Screenshots/logo.png"));
+
+// Full Page Screenshot
+
+TakesScreenshot ts = (TakesScreenshot) driver;
+
+File src = ts.getScreenshotAs(OutputType.FILE);
+
+FileHandler.copy(src, new File("./Screenshots/full.png"));
+
+| Code Part | Belongs To | Purpose |
+| --- | --- | --- |
+| `TakesScreenshot` | Interface | Capture screenshots |
+| `(TakesScreenshot) driver` | Type Casting | Converts driver into TakesScreenshot |
+| `getScreenshotAs()` | Method | Returns screenshot as file |
+| `FileHandler.copy()` | Selenium IO | Saves screenshot permanently |
+
+👉 **Real-Time Use:** Attach failed step screenshots to Extent Reports for clarity.
+
+---
+
+# 1️⃣2️⃣ Page Object Model (POM) 📘
+
+POM separates **locators + actions** from test logic.  
+Each page = One class 📄.
+
+### 🎯 Benefits
+
+* ✅ Reusable code.
+    
+* ✅ Easy maintenance.
+    
+* ✅ Centralized locators.
+    
+
+public class LoginPage {
+
+WebDriver driver;
+
+@FindBy(id = "username") private WebElement email;
+
+@FindBy(name = "password") private WebElement password;
+
+@FindBy(xpath = "//button\[text()='Login'\]") private WebElement loginBtn;
+
+public LoginPage(WebDriver driver) {
+
+this.driver = driver;
+
+PageFactory.initElements(driver, this);
+
+}
+
+public void login(String user, String pass) {
+
+email.sendKeys(user);
+
+password.sendKeys(pass);
+
+loginBtn.click();
+
+}
+
+}
+
+👉 **Real-Time Use:** If login button changes, update only in LoginPage.java, not in all tests.
+
+---
+
+# 1️⃣3️⃣ WebDriver & WebElement Methods 🖥️
+
+### 🌐 WebDriver Interface Methods
+
+| Method | Return | Purpose | Example |
+| --- | --- | --- | --- |
+| get(url) | void | Opens URL | driver.get("https://google.com"); |
+| getTitle() | String | Page title | driver.getTitle(); |
+| getWindowHandle() | String | Current window ID | driver.getWindowHandle(); |
+| switchTo() | TargetLocator | Switch control | driver.switchTo().alert(); |
+| quit() | void | Closes all windows | driver.quit(); |
+
+---
+
+### 🖱️ WebElement Interface Methods
+
+| Method | Example | Purpose |
+| --- | --- | --- |
+| click() | element.click(); | Click on element |
+| sendKeys() | element.sendKeys("admin"); | Enter text |
+| clear() | element.clear(); | Clear field |
+| getText() | element.getText(); | Get visible text |
+| isDisplayed() | element.isDisplayed(); | Check visibility |
+| isEnabled() | element.isEnabled(); | Check if enabled |
+| isSelected() | element.isSelected(); | Check checkbox/radio |
+
+👉 **Real-Time Use:** `sendKeys()` for input, `click()` for buttons, `getText()` for validations.
+---
+
 * 
