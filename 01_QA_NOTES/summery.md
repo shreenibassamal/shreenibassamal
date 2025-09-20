@@ -380,3 +380,109 @@ mvn test -Psts
     </test>
 </suite>
 ```
+
+# 3\. Jenkins ⚙️
+
+## 3.1 What is Jenkins? 🌐
+
+Jenkins is an **open-source automation server** mainly used for **Continuous Integration (CI)** and **Continuous Delivery (CD)** 🚀.
+
+In my project:
+
+* Integrated **Jenkins with Git & Maven** 🔗
+    
+* On each push, Jenkins:
+    
+    * Pulled latest code 📥
+        
+    * Compiled project using Maven ⚙️
+        
+    * Ran automated test cases ✅
+        
+    * Generated reports 📊
+        
+
+This automation ensured **fast feedback** and **seamless collaboration** among developers and testers.
+
+---
+
+## 3.2 Global Tool Configuration 🛠️
+
+Global Tool Configuration allows us to define tools available for **all jobs**, avoiding repetitive setup.
+
+| Tool | Purpose 📌 | How to Configure ⚙️ | Usage in Jobs 💡 |
+| --- | --- | --- | --- |
+| **JDK** ☕ | Java compiler for Jenkins & builds | Add name, set `JAVA_HOME`, or install automatically | Select JDK version in Build Environment |
+| **Maven** 📦 | Build & dependency management tool | Add Maven version name, path, or auto-install | Jobs select Maven version in Build → `clean test` |
+| **Git** 🌱 | Version control system | Add Git name & path to executable | Used for cloning/fetching repos |
+| **Gradle** (optional) 📘 | Alternative build tool | Add Gradle name, path, or auto-install | Select Gradle if project uses it |
+| **Ant** (optional) 🏗️ | Legacy Java build tool | Add Ant name, path, or auto-install | Select Ant for old projects |
+
+👉 Navigate: **Manage Jenkins → Global Tool Configuration**
+
+---
+
+## 3.3 Creating a Jenkins Job 🧩
+
+Steps to create a job:
+
+| Step | Action 🎯 | Details / Notes 📝 |
+| --- | --- | --- |
+| 1 | Access Jenkins Dashboard | Open [`http://localhost:8080`](http://localhost:8080) & log in 🔑 |
+| 2 | Click **New Item** | Start job creation ➕ |
+| 3 | Enter Job Name | Unique name (e.g., *MyMavenProject*) 🏷️ |
+| 4 | Select Project Type | Freestyle, Maven, or Pipeline ⚡ |
+| 5 | Configure Source Code / POM | Git repo URL + credentials, or POM file path 📂 |
+| 6 | Add Build Steps | e.g., `clean install`, shell scripts 🔧 |
+| 7 | Configure Post-Build Actions | Email reports, archive artifacts, HTML reports 📬 |
+| 8 | Save the Job | Store config 💾 |
+| 9 | Run the Job | Click **Build Now** ▶️ |
+| 10 | View Results | Build History & Console Output 📜 |
+
+---
+
+## 3.4 Jenkins Setup (Windows) 🖥️
+
+| Step | Action ⚡ | Windows Instructions / Jenkins Action | Purpose ✅ |
+| --- | --- | --- | --- |
+| 1 | Install JDK ☕ | Download & install JDK → `C:\Program Files\Java\jdk-21` | Needed for Java, Maven, Jenkins, Selenium |
+|  | Set Env Vars | Add `JAVA_HOME` + update PATH | Makes Java available system-wide |
+|  | Verify | `java -version` | Confirms setup |
+| 2 | Install Maven 📦 | Download & extract → `C:\apache-maven-3.9.6` | Needed to build Java projects |
+|  | Set Env Vars | Add `MAVEN_HOME` + update PATH | Enables `mvn` commands |
+|  | Verify | `mvn -v` | Confirms setup |
+| 3 | Create Maven Project in Eclipse | `File → New → Maven Project` | Generates POM structure |
+|  | Add Dependencies | Selenium, TestNG, Surefire 🔌 | Required libraries |
+|  | Add `testng.xml` | Define suite & classes 🧩 | Select which tests run |
+|  | Run in Eclipse | Right-click → `Run As TestNG Suite` | Verify before Jenkins integration |
+| 4 | Install Jenkins | Download & install as **Windows Service** | Background automation tool |
+|  | Start Jenkins | Open [`http://localhost:8080`](http://localhost:8080) | Access Jenkins Dashboard |
+|  | Unlock Jenkins | Use key in `C:\Program Files\Jenkins\secrets` | First-time login 🔑 |
+|  | Install Plugins | Select *Install Suggested Plugins* | Basic setup |
+| 5 | Configure Tools | Add JDK & Maven under **Global Tool Config** | Allows Jenkins to use tools |
+| 6 | Create Jenkins Job | New Item → Freestyle → *MySeleniumJob* | Create automation job |
+|  | Add Build Step | `Invoke top-level Maven targets → clean test` | Run tests via Maven |
+|  | Run Job | **Build Now** → View Console | Verify integration ✔️ |
+| 7 | Configure Email Notifications 📧 | Install *Email Extension Plugin* | Send reports |
+|  | SMTP Setup | Gmail SMTP → App password 🔐 | Jenkins can send mail |
+|  | Post-Build Action | Editable Email Notification | Configure recipients & reports |
+|  | Attach Reports | `**/test-output/emailable-report.html` | Send TestNG report 📑 |
+|  | Trigger | Always | Send mail every build 📬 |
+| 8 | Schedule Build ⏰ | Cron: `15 11 * * *` | Runs daily at 11:15 AM 🕚 |
+
+---
+
+## 3.5 Summary ✨
+
+* Jenkins automates builds, tests, and reporting ⚡
+    
+* Ensures consistency via **Global Tool Config** 🛠️
+    
+* Supports **Freestyle, Maven, and Pipeline jobs** 🧩
+    
+* Integrated with **Git, Maven, TestNG** 🔗
+    
+* Configurable for **email reports, scheduled runs, CI/CD** 📬
+* ---
+* ---
+* 
