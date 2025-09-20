@@ -26,5 +26,6 @@
    <li><a href="./01_QA_NOTES/xpath.md">Xpath</a></li>
    <li><a href="">DOM, BOM, AJAX</a></li>
    <li><a href="">Most Asked Interview QA </a></li>
+    <li><a href="./01_QA_NOTES/summery.md">All Notes in summery</a></li>  
 </ul>
 
