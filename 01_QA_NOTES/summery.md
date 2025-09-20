@@ -484,5 +484,275 @@ Steps to create a job:
     
 * Configurable for **email reports, scheduled runs, CI/CD** 📬
 * ---
+* # 4\. Extent Reports 📊
+
+## 4.1 What are Extent Reports? 🌐
+
+Extent Reports is a **reporting library** widely used in automation testing with **Selenium + TestNG**. It generates **interactive, professional HTML reports** that are much more advanced than default TestNG reports.
+
+✨ **Advantages of Extent Reports:**
+
+* Step-by-step logging 📝
+    
+* Screenshots for failed steps 📸
+    
+* Customizable with themes 🎨
+    
+* Supports authors, categories, modules 🧑‍💻
+    
+* Consolidated view of entire suite 📂
+    
+
+👉 In my project, I used Extent Reports to log test steps, attach screenshots, and provide execution environment details.
+
+---
+
+## 4.2 Implementation in Framework ⚙️
+
+Steps:
+
+1. Create `ExtentSparkReporter` → define file path, theme, name 📑
+    
+2. Create `ExtentReports` object → attach reporter 🔗
+    
+3. Add **System Info** (OS, Browser, Tester) 💻
+    
+4. Create `ExtentTest` for each test 🎯
+    
+5. Log test steps with `Status` enums ✅❌⚠️
+    
+6. Call `flush()` → generate report 📊
+    
+
+---
+
+## 4.3 Example Code 💻
+
+import com.aventstack.extentreports.ExtentReports;
+
+import com.aventstack.extentreports.ExtentTest;
+
+import com.aventstack.extentreports.Status;
+
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+import [java.util.Date](http://java.util.Date);
+
+public class ExtentReportEnhanced {
+
+public static void main(String\[\] args) {
+
+// Step 1: Setup Spark Reporter with timestamp
+
+String timeStamp = new Date().toString().replace(" ", "\_").replace(":", "\_");
+
+String reportPath = "extentReport\_" + timeStamp + ".html";
+
+ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
+
+spark.config().setDocumentTitle("CRM Test Report");
+
+spark.config().setReportName("Automation Execution Report");
+
+spark.config().setTheme(Theme.DARK);
+
+// Step 2: Create ExtentReports & attach reporter
+
+ExtentReports extent = new ExtentReports();
+
+extent.attachReporter(spark);
+
+// Step 3: Add environment/system details
+
+extent.setSystemInfo("OS", "Windows 10");
+
+extent.setSystemInfo("Browser", "Chrome 122");
+
+extent.setSystemInfo("Tester", "Saddam");
+
+// Step 4: Create test and add logs
+
+ExtentTest test = extent.createTest("Login Test");
+
+test.log([Status.INFO](http://Status.INFO), "Browser launched successfully 🌐");
+
+test.log(Status.PASS, "User logged in successfully ✅");
+
+// Step 5: Generate the report
+
+extent.flush();
+
+System.out.println("Report generated at: " + reportPath);
+
+}
+
+}
+
+---
+
+# 5\. Exceptions & Their Solutions 🐞
+
+In Selenium, exceptions are unexpected events that **disrupt test execution**. Java provides **try–catch** blocks for handling them.
+
+| # | Exception ⚡ | When it Occurs ❌ | Solution ✅ |
+| --- | --- | --- | --- |
+| 1 | NoSuchElementException | Element not found | Check locator, use **explicit wait** ⏳ |
+| 2 | ElementNotInteractableException | Element present but not clickable | Wait until visible / scroll 🔄 |
+| 3 | StaleElementReferenceException | Element detached from DOM (reload) | Re-locate element after reload 🔁 |
+| 4 | TimeoutException | Wait exceeded | Increase wait or correct condition ⏱️ |
+| 5 | NoSuchFrameException | Switching to non-existing frame | Verify frame name/index 🪟 |
+| 6 | NoAlertPresentException | Switching to non-existing alert | Ensure alert is triggered ⚠️ |
+| 7 | ElementClickInterceptedException | Popup blocking click | Wait/scroll or use JS click 🖱️ |
+| 8 | SessionNotCreatedException | Driver-browser mismatch | Update WebDriver/browser 🌍 |
+| 9 | InvalidSelectorException | Invalid XPath/CSS | Fix locator syntax ✏️ |
+| 10 | WebDriverException | Browser not reachable | Check setup & session 🔧 |
+| 11 | FileNotFoundException | File path missing | Provide correct path 📂 |
+| 12 | InvalidArgumentException | Invalid input/URL | Use valid URLs & paths 🔗 |
+
+---
+
+# 6\. Listeners 🎧
+
+Listeners in **TestNG** are like **observers** 👀 that react to test events (start, pass, fail, skip).
+
+✨ **Benefits:**
+
+* Capture screenshots on failure 📸
+    
+* Auto-log results ✅❌⚠️
+    
+* Integrate with reports (Extent Reports) 📊
+    
+
+---
+
+## 6.1 Implementation ⚡
+
+### 🔹 Step 1: Create Listener Class
+
+import org.testng.ITestListener;
+
+import org.testng.ITestResult;
+
+public class MyTestListener implements ITestListener {
+
+@Override
+
+public void onTestStart(ITestResult result) {
+
+System.out.println("Test Started: " + result.getName());
+
+}
+
+@Override
+
+public void onTestSuccess(ITestResult result) {
+
+System.out.println("Test Passed: " + result.getName());
+
+}
+
+@Override
+
+public void onTestFailure(ITestResult result) {
+
+System.out.println("Test Failed: " + result.getName());
+
+// ✅ Capture screenshot code here
+
+}
+
+@Override
+
+public void onTestSkipped(ITestResult result) {
+
+System.out.println("Test Skipped: " + result.getName());
+
+}
+
+}
+
+### 🔹 Step 2: Attach Listener
+
+**Option 1: TestNG XML**
+
+&lt;suite name="Suite"&gt;
+
+&lt;listeners&gt;
+
+&lt;listener class-name="com.listeners.MyTestListener"/&gt;
+
+&lt;/listeners&gt;
+
+&lt;test name="Test"&gt;
+
+&lt;classes&gt;
+
+&lt;class name="com.tests.LoginTest"/&gt;
+
+&lt;/classes&gt;
+
+&lt;/test&gt;
+
+&lt;/suite&gt;
+
+**Option 2: @Listeners Annotation**
+
+import org.testng.annotations.Listeners;
+
+import org.testng.annotations.Test;
+
+@Listeners(MyTestListener.class)
+
+public class LoginTest {
+
+@Test
+
+public void testLoginPass() {
+
+System.out.println("Login test executed successfully ✅");
+
+}
+
+@Test
+
+public void testLoginFail() {
+
+throw new RuntimeException("Forcing a failure ❌");
+
+}
+
+}
+
+---
+
+# 7\. TestNG Annotations 🧩
+
+Annotations in TestNG control **test execution flow** ⏳.
+
+| # | Annotation | Description |
+| --- | --- | --- |
+| 1 | @BeforeSuite | Runs before all tests 🏁 |
+| 2 | @AfterSuite | Runs after all tests 🏁 |
+| 3 | @BeforeTest | Runs before `<test>` in XML ⚡ |
+| 4 | @AfterTest | Runs after `<test>` in XML ⚡ |
+| 5 | @BeforeClass | Before first method in class 📘 |
+| 6 | @AfterClass | After all methods in class 📘 |
+| 7 | @BeforeMethod | Before each test method 🔄 |
+| 8 | @AfterMethod | After each test method 🔄 |
+| 9 | @Test | Marks a method as test case ✅ |
+| 10 | @DataProvider | Provides test data 📊 |
+| 11 | @Parameters | Pass values from XML 🔑 |
+| 12 | @BeforeGroups | Before first method in group 📂 |
+| 13 | @AfterGroups | After all methods in group 📂 |
+| 14 | @Factory | Runs set of test classes 🏗️ |
+| 15 | @Listeners | Attach listeners 🎧 |
+| 16 | @Ignore | Skip test ❌ |
+| 17 | @Test(invocationCount) | Run same test multiple times 🔁 |
+| 18 | @Test(priority) | Define test order 🔢 |
+| 19 | @Test(dependsOnMethods) | One test depends on another 🔗 |
+| 20 | @Test(expectedExceptions) | Expected exception in test ⚡ |
 * ---
 * 
