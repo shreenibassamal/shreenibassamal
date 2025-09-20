@@ -169,3 +169,214 @@ In my projects, we used Git with GitHub:
 ---
 
 ✨ With Git + GitHub, collaboration becomes smooth, trackable, and efficient 🚀
+
+# 2\. Maven ☕
+
+## 2.1 What is Maven? 📂
+
+Maven is a **build automation** and **project management** tool mainly used for Java projects. It helps to:
+
+* Compile source code ⚙️
+    
+* Run tests ✅
+    
+* Package applications into JAR/WAR 📦
+    
+* Generate reports 📊
+    
+* Manage dependencies automatically 🔗
+    
+
+👉 Instead of manually adding JAR files, we declare them in `pom.xml` 📄 and Maven downloads them from the central repository. It also integrates well with **CI/CD pipelines like Jenkins** ⚡.
+
+---
+
+## 2.2 Real-time Usage 💼
+
+* Installed & configured Maven in CMD 🖥️
+    
+* Declared dependencies in `pom.xml` 📄
+    
+* Configured **Surefire Plugin** for TestNG XML suites 🔧
+    
+* Ran scripts with:
+    
+    ```bash
+    mvn clean test -P sts
+    ```
+    
+* Checked reports in `target/surefire-reports` & `test-output` 📑
+    
+
+This helped us execute tests **without opening Eclipse** and integrate easily with **Jenkins pipelines** 🚀.
+
+---
+
+## 2.3 Maven Lifecycle Phases 🔄
+
+| Phase | Command | Easy Meaning 📝 | Technical Meaning 🛠️ |
+| --- | --- | --- | --- |
+| Clean | `mvn clean` 🧹 | Delete old files, start fresh | Removes previous build outputs (e.g., `target/` folder) |
+| Validate | `mvn validate` 🔍 | Check project setup | Ensures project structure & configuration are correct |
+| Compile | `mvn compile` ⚙️ | Convert code to class files | Compiles `.java` → `.class` |
+| Test | `mvn test` ✅ | Run tests | Executes unit/automation tests (JUnit, TestNG) |
+| Package | `mvn package` 📦 | Make JAR/WAR file | Bundles compiled code + resources into `.jar`/`.war` |
+| Verify | `mvn verify` 🔁 | Double-check build | Runs integration checks to ensure package is valid |
+| Install | `mvn install` 💾 | Save build locally | Installs package into local repo (`~/.m2`) for use in other projects |
+| Deploy | `mvn deploy` 🚀 | Share with team | Uploads package to remote repo (Nexus, Artifactory) |
+
+---
+
+## 2.4 Key `pom.xml` Tags 🏷️
+
+| Tag Name | Easy Meaning 📝 | Technical Purpose |
+| --- | --- | --- |
+| `<profiles>` | Group of all profiles 📦 | Container for multiple `<profile>` definitions |
+| `<profile>` | One profile (e.g., STS, Dev) | Defines build configuration |
+| `<id>` | Profile name 🔑 | Used with `-P <id>` to activate profile |
+| `<build>` | Build instructions 🔧 | Holds build-specific configs |
+| `<plugins>` | List of plugins 🔌 | Groups multiple `<plugin>` |
+| `<plugin>` | One specific plugin ⚡ | Defines plugin details (e.g., compiler) |
+| `<groupId>` | Plugin’s org/group name 🏢 | Identifies publisher (e.g., `org.apache.maven.plugins`) |
+| `<artifactId>` | Plugin name 🏷️ | Identifies plugin (e.g., `maven-compiler-plugin`) |
+| `<version>` | Version of plugin 🔢 | Which version Maven uses |
+| `<configuration>` | Custom settings ⚙️ | Defines options (e.g., `release=21`, test suite file) |
+| `<release>` | Java version ☕ | Defines allowed Java version features |
+| `<suiteXmlFiles>` | TestNG XML files 📂 | Surefire executes suites |
+| `<suiteXmlFile>` | Single suite file 📄 | Exact path to XML suite (e.g., `Smoke.xml`) |
+
+---
+
+## 2.5 Example `pom.xml` ⚡
+
+```xml
+<build>
+    <plugins>
+        <!-- Compiler Plugin -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.13.0</version>
+            <configuration>
+                <release>21</release>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+<profiles>
+    <!-- Smoke Profile -->
+    <profile>
+        <id>smoke</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>Smoke.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
+    <!-- Integration Profile -->
+    <profile>
+        <id>integration</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>Integration.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
+    <!-- STS Profile -->
+    <profile>
+        <id>sts</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>STS.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+```
+
+---
+
+## 2.6 Running Profiles 🏃‍♂️
+
+```bash
+mvn test -Psmoke
+mvn test -Pintegration
+mvn test -Psts
+```
+
+---
+
+## 2.7 Example TestNG Suites 🧩
+
+### 🔹 Smoke Suite
+
+```xml
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="SmokeSuite">
+    <test name="SmokeTests">
+        <classes>
+            <class name="com.tests.LoginTest"/>
+            <class name="com.tests.HomePageTest"/>
+        </classes>
+    </test>
+</suite>
+```
+
+### 🔹 Integration Suite
+
+```xml
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="IntegrationSuite">
+    <test name="IntegrationTests">
+        <classes>
+            <class name="com.tests.UserRegistrationTest"/>
+            <class name="com.tests.PaymentTest"/>
+            <class name="com.tests.OrderFlowTest"/>
+        </classes>
+    </test>
+</suite>
+```
+
+### 🔹 STS Suite
+
+```xml
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="STSSuite">
+    <test name="STSTests">
+        <classes>
+            <class name="com.tests.RegressionTest"/>
+            <class name="com.tests.PerformanceTest"/>
+        </classes>
+    </test>
+</suite>
+```
