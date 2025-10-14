@@ -1,3 +1,4 @@
+ <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-restAssured/blob/main/README.md">RestAssured</a></li>
 <!--
 ## Hi there 👋
 
@@ -12,7 +13,7 @@
 <ul>
    <li><a href="./01_QA_NOTES/manualTesting.md">Manaul</a></li>    
    <li><a href="https://github.com/shreenibassamal/hashnodeBlogs/blob/main/cmfzhkbea000402l82dw86y1m.md">Agile with jira</a></li>
-   <li><a href="">SQL</a></li>
+   <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-restAssured/blob/main/README.md">RestAssured</a></li>
    <li><a href="https://github.com/shreenibassamal/hashnodeBlogs/blob/main/cmfzn2fml000302i2cut0dxxq.md">Java</a></li>
    <li><a href="./01_QA_NOTES/maven.md">Maven</a></li>
    <li><a href="./01_QA_NOTES/selinium.md">Selenium With Java</a></li>
