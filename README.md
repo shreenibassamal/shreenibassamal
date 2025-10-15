@@ -1,4 +1,5 @@
  <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-restAssured/blob/main/README.md">RestAssured</a></li>
+ <li><a href="https://github.com/shreenibassamal/TekPyramidInterviewQuestions/blob/main/README.md">Most Asked Interview QA </a></li>
 <!--
 ## Hi there 👋
 
@@ -27,7 +28,7 @@
    <li><a href="./01_QA_NOTES/apiStatuscode.md">API Status Code</a></li>
    <li><a href="./01_QA_NOTES/xpath.md">Xpath</a></li>
    <li><a href="">DOM, BOM, AJAX</a></li>
-   <li><a href="">Most Asked Interview QA </a></li>
+   <li><a href="https://github.com/shreenibassamal/TekPyramidInterviewQuestions/blob/main/README.md">Most Asked Interview QA </a></li>
     <li><a href="./01_QA_NOTES/summery.md">All Notes in summery</a></li>  
 </ul>
 -->
