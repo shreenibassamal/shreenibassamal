@@ -1,6 +1,6 @@
  <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-restAssured/blob/main/README.md">RestAssured</a></li>
   <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-BDD/blob/main/README.md">BDD with Cucumber</a></li>
-   <li><a href="https://github.com/shreenibassamal/TekPyramidInterviewQuestions/blob/main/README.md">ScenarioBase Qustions</a></li>
+   <li><a href="https://github.com/shreenibassamal/HNB-ScenariosBaseQustions/blob/main/cmguby8jk000a02l78obffxyq.md">ScenarioBase Qustions</a></li>
  <li><a href="https://github.com/shreenibassamal/TekPyramidInterviewQuestions/blob/main/README.md">Most Asked Interview QA </a></li>
  
 <!--
