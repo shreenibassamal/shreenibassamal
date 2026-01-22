@@ -17,12 +17,12 @@
 <h1 align="left">Hi 👋, I'm Shreenibas Samal</h1>
 <h3 align="left">A passionate software engineer from India</h3>
 
-<h3 align="left">📒 Notes & Resources For Java</h3>
+<h3 align="left">📒 Notes & Resources</h3>
 <ul>
- <li><a href="">Java Introduction</a></li>
-  <li><a href="">Java Comments & JavaDoc</a></li>
-   <li><a href="">Appium</a></li>
-    <li><a href="">Appium</a></li>
+ <li><a href="">Java</a></li>
+  <li><a href="">Python</a></li>
+   <li><a href="">Gradle</a></li>
+    <li><a href="">BDD Cucumber</a></li>
  
 </ul>
 
