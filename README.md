@@ -1,9 +1,11 @@
+<!--
  <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-restAssured/blob/main/README.md">RestAssured</a></li>
   <li><a href="https://github.com/shreenibassamal/hashnodeBlog-AutomationTesting-BDD/blob/main/README.md">BDD with Cucumber</a></li>
    <li><a href="https://github.com/shreenibassamal/HNB-ScenariosBaseQustions/blob/main/cmguby8jk000a02l78obffxyq.md">ScenarioBase Qustions</a></li>
  <li><a href="https://github.com/shreenibassamal/TekPyramidInterviewQuestions/blob/main/README.md">Most Asked Interview QA </a></li>
   <li><a href="https://github.com/shreenibassamal/hashnodeBlogs/blob/main/cmhg1ls00000002jsdfuvarv6.md">DSA -00-Programming Questions</a></li>
   <li><a href="https://github.com/shreenibassamal/hashnodeBlogs/blob/main/cmh2ahflt000002jvesbr5nkr.md">DSA -02-Time & Space Complexity</a></li>
+  -->
  
 <!--
 ## Hi there 👋
@@ -11,10 +13,11 @@
 <!--
 **shreenibassamal/shreenibassamal** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 -->
-<!--
+
 <h1 align="left">Hi 👋, I'm Shreenibas Samal</h1>
 <h3 align="left">A passionate software engineer from India</h3>
 
+<!--
 <h3 align="left">📒 Notes & Resources For QA Automatation</h3>
 <ul>
    <li><a href="./01_QA_NOTES/manualTesting.md">Manaul</a></li>    
