@@ -19,7 +19,7 @@
 
 <h3 align="left">📒 Notes & Resources</h3>
 <ul>
- <li><a  href=" https://github.com/shreenibassamal/shreenibassamal/blob/main/01_Java.md">Java</a></li>
+ <li><a  href="https://github.com/shreenibassamal/shreenibassamal/blob/main/01_Java.md">Java</a></li>
   <li><a href="">Python</a></li>
    <li><a href="">Gradle</a></li>
     <li><a href="">BDD Cucumber</a></li>
